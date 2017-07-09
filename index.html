@@ -29,7 +29,8 @@
                 <div class="right floated user-name"> </div>
             </header>
             <section class="content">
-                <audio src="song.mp3"></audio>
+                <audio src="song1.mp3"></audio>
+				
                 <div class="list-headers">
         <div> Title </div> 
         <div> Artist </div>
@@ -37,13 +38,36 @@
         <div> Duration </div>
         </div>
         <div class="song-list">
-        <div class="song">
+        <div class="song" id="song1">
         <span class="song-name"></span>
         <span class="song-artist"></span>
         <span class="song-album"></span>
         <span class="song-length"></span>
         </div>
-        </div>
+		
+		<div class="song" id="song2">
+				<span  class="song-name"></span>
+				<span class="song-artist"></span>
+				<span class="song-album"></span>
+				<span class="song-length"></span>
+				
+				</div>
+				<div class="song" id="song3">
+				<span  class="song-name"></span>
+				<span class="song-artist"></span>
+				<span class="song-album"></span>
+				<span class="song-length"></span>
+				</div>
+				
+				<div class="song" id="song4" >
+				<span class="song-name"></span>
+				<span class="song-artist"></span>
+				<span class="song-album"></span>
+				<span class="song-length"></span>
+				</div>
+				
+
+</div> 
             </section>
             <footer>
                 <div class="controls">
@@ -61,85 +85,13 @@
             </footer>
         </div>
     </div>
-  <!-------------------------------------javascript------------------------>
-	<script src="jquery.js"> </script> <!--jquery---->
-
-	<script>
-	/* old-one
-      var button = document.querySelector('.welcome-screen button');
-      button.addEventListener('click', function() { 
-      var name = document.querySelector('#name-input').value; //to find the thing
-      console.log(name)// to show input
-      });*/
-	
-	$('.welcome-screen button').on('click', function() {
-     var name = $('#name-input').val();
-      if(name.length > 3) {
-      var message = "Welcome, " +  name;
-      $('.main .user-name').text(message);
-      $('.welcome-screen').addClass('hidden');
-      $('.main').removeClass('hidden');
-       }
-     else {
-     $('#name-input').addClass('error');
-        }
-       });
-	   
-	<!------------------------------play-pause------------------------------>   
-	   
-	function toggleSong() {
-      var song = document.querySelector('audio');
-      if(song.paused == true) {
-      console.log('Playing');
-      $('.play-icon').removeClass('fa-play').addClass('fa-pause');
-     song.play();
-      }
-      else {
-      console.log('Pausing');
-    $('.play-icon').removeClass('fa-pause').addClass('fa-play');
-    song.pause();
-}
-} 
-	
-	     $('.play-icon').on('click', function() {
-             toggleSong();
-         });
-
-       $('body').on('keypress',function(event) {
-          if (event.keyCode == 32)
-         {
-             toggleSong();
-         }
-       }); 
-	
-	<!--------------------------play-pause-ends---------------------------------->
-	
-	function updateCurrentTime() {
-    var song = document.querySelector('audio');
-    var currentTime = Math.floor(song.currentTime);
-    currentTime = fancyTimeFormat(currentTime);
-    var duration = Math.floor(song.duration);
-    duration = fancyTimeFormat(duration)
-    $('.time-elapsed').text(currentTime);
-    $('.song-duration').text(duration);
-}
- window.onload = function() {
-updateCurrentTime();
-setInterval(function() {
-updateCurrentTime();
-},1000);
-}
+    <script src="jquery.js"></script>
+    <script src="main.js">
 	
 	
 	
 	
-	
-	
-	
-	
-	</script>
-	
-	<!------------------------------------------------------------------------>
+    </script>
 </body>
 
 </html>
