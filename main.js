@@ -51,21 +51,23 @@ $('#song4 .song-name').text(songList[3]);*/
 // click function for all song
 
 
-function addSongNameClickEvent(songName,position) {
-    var id = '#song' + position;
-$(id).click(function() {
-var audio = document.querySelector('audio');
-var currentSong = audio.src;
-if(currentSong.search(songName) != -1)
-{
-toggleSong();
-}
-else {
-audio.src = songName;
-toggleSong();
-}
-});
-}
+        function addSongNameClickEvent(songObj,position) {
+			   var songName = songObj.fileName; // New Variable 
+               var id = '#song' + position;
+               $(id).click(function() {
+               var audio = document.querySelector('audio');
+               var currentSong = audio.src;
+               if(currentSong.search(songName) != -1)
+               {
+               toggleSong();
+                }
+               else {
+               audio.src = songName;
+               toggleSong();
+			   changeCurrentSongDetails(songObj);
+                }
+               });
+                }
 
 
 
@@ -96,27 +98,35 @@ function fancyTimeFormat(time)
 //function for display current and duration time of song
 
 
-function updateCurrentTime() {
-var song = document.querySelector('audio');
-    var currentTime = Math.floor(song.currentTime);
-    currentTime = fancyTimeFormat(currentTime);
-    var duration = Math.floor(song.duration);
-    duration = fancyTimeFormat(duration)
-    $('.time-elapsed').text(currentTime);
-    $('.song-duration').text(duration);
+   function updateCurrentTime() {
+      var song = document.querySelector('audio');
+        var currentTime = Math.floor(song.currentTime);
+        currentTime = fancyTimeFormat(currentTime);
+        var duration = Math.floor(song.duration);
+        duration = fancyTimeFormat(duration)
+        $('.time-elapsed').text(currentTime);
+        $('.song-duration').text(duration);
+}
+//----------for-image--------------
+   function changeCurrentSongDetails(songObj) {
+     $('.current-song-image').attr('src','images/' + songObj.image)
+     $('.current-song-name').text(songObj.name)
+     $('.current-song-album').text(songObj.album)
 }
 
 
 
+             window.onload = function() {
+				 changeCurrentSongDetails(songs[0]);
+             updateCurrentTime();
+             setInterval(function() {
+             updateCurrentTime();
+              },1000);
 
-
-window.onload = function() {
-updateCurrentTime();
-setInterval(function() {
-updateCurrentTime();
-},1000);
-
-
+			 $('#songs').DataTable({
+             paging: false
+             });
+			 }
 //playlist
 
 var songs = [{  //song1
@@ -124,28 +134,32 @@ var songs = [{  //song1
         'artist': 'Neha Kakkar, Monali Thakur, Ikka Singh, Dev Negi',
         'album': 'Badrinath ki Dulhania',
         'duration': '2:56',
-       'fileName': 'song1.mp3'
+       'fileName': 'song1.mp3',
+	    'image':'img3.jpg'
     },
     {      //song2
         'name': 'Humma Song',
         'artist': 'Badshah, Jubin Nautiyal, Shashaa Tirupati',
         'album': 'Ok Jaanu',
         'duration': '3:15',
-        'fileName': 'song2.mp3'
+        'fileName': 'song2.mp3',
+		'image':'img2.jpg'
     }, 
     {       //song3
          'name': 'Nashe Si Chadh Gayi',
         'artist': 'Arijit Singh',
         'album': 'Befikre',
         'duration': '2:34',
-        'fileName': 'song3.mp3'
+        'fileName': 'song3.mp3',
+		'image':'img1.jpg'
     },
     {       //song4
         'name': 'The Breakup Song',
         'artist': 'Nakash Aziz, Arijit Singh, Badshah, Jonita Gandhi',
         'album': 'Ae Dil Hai Mushkil',
         'duration': '2:29',
-        'fileName': 'song4.mp3'
+        'fileName': 'song4.mp3',
+		'image':'img4.jpg'
 
     }]
     
@@ -162,10 +176,11 @@ var songs = [{  //song1
         song.find('.song-artist').text(obj.artist);
         song.find('.song-album').text(obj.album);
         song.find('.song-length').text(obj.duration);
-        addSongNameClickEvent(obj.fileName,i+1);
+        addSongNameClickEvent(obj,i+1);
     }
 
-}
+	
+
 	
 
 	
@@ -186,7 +201,7 @@ var songs = [{  //song1
 	
     $('.welcome-screen button').on('click', function() {
         var name = $('#name-input').val();
-        if (name.length > 2) {
+        if (name.length > 3) {
             var message = "Welcome, " + name;
             $('.main .user-name').text(message);
             $('.welcome-screen').addClass('hidden');
