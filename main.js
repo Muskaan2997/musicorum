@@ -22,14 +22,14 @@
 	
 	
 	
-    $('body').on('keypress', function(event) {
+  /*  $('body').on('keypress', function(event) {
                 if (event.keyCode == 32) {
                     
 				toggleSong();	
 					
 					
                 }
-            });	
+            });	*/
 	
 
 
