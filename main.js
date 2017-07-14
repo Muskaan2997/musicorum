@@ -1,3 +1,54 @@
+var currentSongNumber = 1;
+var willLoop = 0;
+var willShuffle = 0; // will use this soon
+
+$('.fa-repeat').on('click',function() {
+    $('.fa-repeat').toggleClass('disabled')
+    willLoop = 1 - willLoop;
+});
+
+$('.fa-random').on('click',function() {
+    $('.fa-random').toggleClass('disabled')
+    willShuffle = 1 - willShuffle;
+});
+
+function timeJump() {
+    var song = document.querySelector('audio')
+    song.currentTime = song.duration - 5;
+}
+
+$('audio').on('ended',function() {
+    var audio = document.querySelector('audio');
+    if(currentSongNumber < 4) {
+        // Play the next song
+    }
+    else {
+        // Stop Playing
+    }
+})
+
+$('audio').on('ended',function() {
+    var audio = document.querySelector('audio');
+    if(currentSongNumber < 4) {
+        var nextSongObj = songs[currentSongNumber];
+        audio.src = nextSongObj.fileName;
+        toggleSong();
+        changeCurrentSongDetails(nextSongObj);
+        currentSongNumber = currentSongNumber + 1;
+    }
+    else if(willLoop == 1) {
+        var nextSongObj = songs[0];
+        audio.src = nextSongObj.fileName;
+        toggleSong();
+        changeCurrentSongDetails(nextSongObj);
+        currentSongNumber =  1;
+    }
+    else {
+        $('.play-icon').removeClass('fa-pause').addClass('fa-play');
+        audio.currentTime = 0;
+    }
+})
+
 
 //function for song play and pause
 	
@@ -22,14 +73,13 @@
 	
 	
 	
-   $('body').on('keypress', function(event) {
-                if (event.keyCode == 32) {
-                    
-				toggleSong();	
-					
-					
-                }
-            });	
+  $('body').on('keypress',function(event) {
+    var target = event.target;
+    if (event.keyCode == 32 && target.tagName !='INPUT')
+    {
+        toggleSong();
+    }
+});
 	
 
 
@@ -220,24 +270,5 @@ var songs = [{  //song1
 		
 		
     });
-	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	

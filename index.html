@@ -30,7 +30,7 @@
                 <div class="right floated user-name"> </div>
             </header>
             <section class="content">
-                <audio src="song1.mp3"></audio>
+                <audio   src="song1.mp3"></audio>
 				<table id="songs">
                 <thead class="list-headers">
        <tr> <td> Title </td> 
@@ -44,7 +44,7 @@
         <td class="song-artist"></td>
         <td class="song-album"></td>
         <td class="song-length"></td>
-        </div>
+  
 		
 		 <tr class="song" id="song2">
                 <td class="song-name"></td>
@@ -80,10 +80,31 @@
 
 
             </section>
+			<div>
+				 <canvas id="analyser_render"></canvas>
+				</div>
             <footer>
+
+				
                 <div class="controls">
+				
+				
                     <div class="player-buttons">
-                        <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+                       
+      <i class="fa fa-random clickable disabled" aria-hidden="true"></i>
+      <i class="fa fa-step-backward clickable" aria-hidden="true"></i>
+      <i class="fa fa-play clickable play-icon" aria-hidden="true"></i>
+      <i class="fa fa-step-forward clickable" aria-hidden="true"></i>
+      <i class="fa fa-repeat disabled clickable" aria-hidden="true"></i>
+      <i class="fa fa-bar-chart" aria-hidden="true"></i>
+	  <!----------------analyser----------->
+	 
+	  
+	 
+	  
+	  
+	  
+	  <!------------------------->
                     </div>
                     <div class="progress-wrapper">
                         <span class="time-elapsed"> </span>
@@ -98,13 +119,16 @@
     </div>
     <script src="jquery.js"></script>
 	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    
-    <script src="main.js">
+     <script src="main2.js"> </script>
+	 
+	  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"> </script>
+	 
+    <script src="main.js"> </script>
 	
 	
 	
 	
-    </script>
+   
 </body>
 
 </html>
