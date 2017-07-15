@@ -3,11 +3,11 @@
 
 
 	// Establish all variables that your Analyser will use
-var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height;
+var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height,audio;
 // Initialize the MP3 player after the page loads all of its HTML into the window
 window.addEventListener("load", initMp3Player, false);
 function initMp3Player(){
-	document.getElementById('audio_box').appendChild(audio);
+	audio= document.querySelector('audio');
 	context = new AudioContext(); // AudioContext object instance
 	analyser = context.createAnalyser(); // AnalyserNode method
 	canvas = document.getElementById('analyser_render');
