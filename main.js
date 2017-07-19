@@ -17,15 +17,6 @@ function timeJump() {
     song.currentTime = song.duration - 5;
 }
 
-$('audio').on('ended',function() {
-    var audio = document.querySelector('audio');
-    if(currentSongNumber < 4) {
-        // Play the next song
-    }
-    else {
-        // Stop Playing
-    }
-})
 
 $('audio').on('ended',function() {
     var audio = document.querySelector('audio');
@@ -87,7 +78,6 @@ $('audio').on('ended',function() {
 /* playlist using array
 var songList = ['Badri Ki Dulhania (Title Track)','Humma Song', 'Nashe Si Chadh Gayi', 'The Breakup Song']; 
 var fileNames =['song1.mp3','song2.mp3','song3.mp3','song4.mp3',] 
-
 $('#song1 .song-name').text(songList[0]);
 $('#song2 .song-name').text(songList[1]);
 $('#song3 .song-name').text(songList[2]);
@@ -171,6 +161,7 @@ function fancyTimeFormat(time)
              updateCurrentTime();
              setInterval(function() {
              updateCurrentTime();
+			  progressbar(); 
               },1000);
 
 			 $('#songs').DataTable({
@@ -272,3 +263,138 @@ var songs = [{  //song1
     });
 	
 	
+function progressbar() {
+	var song = document.querySelector('audio');
+	var ct=  song.currentTime;
+	var dt=song.duration;
+	var percentage=(ct/dt)*100;
+	$(".progress-filled").css('width', percentage+"%");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//to mute the song mute function is there
+
+ function mute(){
+	 var song = document.querySelector('audio');
+	 if(song.muted)
+	 {
+	 song.muted=false;
+	 }
+      else
+	  {
+		  song.muted = true;
+		  
+		  }
+ }
+
+ 
+//low-high the sound of song volume function is there
+
+ function setvolume(){
+
+	 var song = document.querySelector('audio');
+	 song.volume= volumeslider.value/100;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// click on mute icon 
+
+$('.fa-volume-up ').on('click', function() {
+$('.fa-volume-up ').toggleClass('disabled')
+    willmute = 1 - willmute;
+
+ mute();
+
+    });
+
+
+
+
+// click on loop icon 
+
+$('.fa-repeat').on('click',function() {
+$('.fa-repeat').toggleClass('disabled')
+    willLoop = 1 - willLoop;
+});
+
+// click on shuffle icon 
+
+$('.fa-random').on('click',function() {
+    $('.fa-random').toggleClass('disabled')
+    willShuffle = 1 - willShuffle;
+});
+
+
+$('.next').on('click',function() {
+	
+	var next =songs[1];
+	var audio = document.querySelector('audio');
+
+        
+        audio.src = next.fileName;
+        toggleSong();
+        changeCurrentSongDetails(next);
+    
+});
+
+
+// click on volume icon 
+
+$('#volumeslider').on('mousemove',function() {
+    setvolume();
+});
+
+// click on visualzation icon 
+
+$('.fa-bar-chart').on('click',function() {
+
+  if(willvisual==0){
+      $('.fa-bar-chart').removeClass('disabled');
+      willvisual=1;
+
+
+          $('svg').css('display', 'inline-block');
+    		initMp3Player();
+  }
+  else{
+    $('.fa-bar-chart').addClass('disabled');
+
+    $('canvas').css('display', 'none');
+  willvisual=0;
+  }
+
+});
