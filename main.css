@@ -234,3 +234,11 @@ table.dataTable tbody tr {
 	 background:#002D3C;
 	 float:left;
 	 }
+	 
+	 
+	 #volumeslider{
+	position:relative;
+	left:-25px;
+	width:80px;
+
+}

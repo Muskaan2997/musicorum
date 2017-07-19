@@ -1,6 +1,9 @@
 var currentSongNumber = 1;
 var willLoop = 0;
 var willShuffle = 0; // will use this soon
+var willmute =1;
+var willvisual=0;
+
 
 $('.fa-repeat').on('click',function() {
     $('.fa-repeat').toggleClass('disabled')
@@ -344,19 +347,6 @@ $('.fa-volume-up ').toggleClass('disabled')
 
 
 
-// click on loop icon 
-
-$('.fa-repeat').on('click',function() {
-$('.fa-repeat').toggleClass('disabled')
-    willLoop = 1 - willLoop;
-});
-
-// click on shuffle icon 
-
-$('.fa-random').on('click',function() {
-    $('.fa-random').toggleClass('disabled')
-    willShuffle = 1 - willShuffle;
-});
 
 
 $('.next').on('click',function() {
@@ -398,3 +388,65 @@ $('.fa-bar-chart').on('click',function() {
   }
 
 });
+
+$(".fa-step-forward").click(function(){
+
+if( willShuffle == 1)
+{
+      var audio = document.querySelector('audio');
+      var nextSongNumber = randomExcluded(0,6,Playingnumber); // Calling our function from Stackoverflow
+
+      var nextSongObj = songs[nextSongNumber];
+      audio.src = nextSongObj.fileName;
+      toggleSong();
+      changeCurrentSongDetails(nextSongObj);
+      Playingnumber = nextSongNumber;
+
+
+}
+
+
+else {
+
+          if(Playingnumber == songs.length-1){
+          Playingnumber = 0;
+          changeSong();
+          }
+
+          else {
+         // console.log("two");
+          console.log(Playingnumber);
+            Playingnumber++;
+          changeSong();
+          }
+
+}
+
+})
+
+
+
+
+$(".fa-step-backward").click(function(){
+
+if(Playingnumber == 0){
+console.log("one");
+Playingnumber = (songs.length-1);
+changeSong();
+
+
+
+
+}
+
+else {
+console.log("two");
+console.log(Playingnumber);
+  Playingnumber--;
+changeSong();
+}
+
+
+
+
+})
