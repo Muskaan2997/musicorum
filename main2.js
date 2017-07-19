@@ -1,7 +1,4 @@
 
-
-
-
 	// Establish all variables that your Analyser will use
 var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height,audio;
 // Initialize the MP3 player after the page loads all of its HTML into the window
