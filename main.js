@@ -2,7 +2,7 @@ var currentSongNumber = 1;
 var willLoop = 0;
 var willShuffle = 0; // will use this soon
 var willmute =1;
-var willvisual=0;
+
 
 
 $('.fa-repeat').on('click',function() {
@@ -368,26 +368,7 @@ $('#volumeslider').on('mousemove',function() {
     setvolume();
 });
 
-// click on visualzation icon 
 
-$('.fa-bar-chart').on('click',function() {
-
-  if(willvisual==0){
-      $('.fa-bar-chart').removeClass('disabled');
-      willvisual=1;
-
-
-          $('svg').css('display', 'inline-block');
-    		initMp3Player();
-  }
-  else{
-    $('.fa-bar-chart').addClass('disabled');
-
-    $('canvas').css('display', 'none');
-  willvisual=0;
-  }
-
-});
 
 $(".fa-step-forward").click(function(){
 
